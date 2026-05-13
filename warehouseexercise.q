@@ -26,13 +26,13 @@ show "===== Total Quantity Sold Per Product ====="
 show `product xkey select totalQty:sum quantity by product from sales
 
 show "===== Product With Highest Total Quantity Sold ====="
-show first `totalQty xdesc select totalQty:sum quantity by product from sales
+show 1# `totalQty xdesc `product xkey select totalQty:sum quantity by product from sales
 
 
 // LEVEL 2 - WORKING WITH TIME
 
 show "===== Sales Count Per Store Per Hour ====="
-show `store`hour xkey select count i by store, hour:`hh$time from sales
+show `store`hour xkey select count i by store, hour:{`$string[x],"-",string[x+1]}each `hh$time from sales
 
 show "===== Average Price Per Product - Morning (09:00-13:00) ====="
 show `product xkey select avgPrice:avg price by product
@@ -43,7 +43,7 @@ show `product xkey select avgPrice:avg price by product
     from sales where time within 17:00 21:00
 
 show "===== Hour With Highest Total Quantity Sold ====="
-show first `totalQty xdesc select totalQty:sum quantity by hour:`hh$time from sales
+show 1# `totalQty xdesc `hour xkey select totalQty:sum quantity by hour:{`$string[x],"-",string[x+1]}each `hh$time from sales
 
 
 // LEVEL 3 - COMBINING DATA BY TIME
