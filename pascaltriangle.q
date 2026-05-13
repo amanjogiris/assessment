@@ -8,4 +8,4 @@ pascal:{[n]
     triangle
  }
 
-{show x}each pascal 5;
+{show x}each pascal 4;
