@@ -1,6 +1,4 @@
-// ============================================================
 // SAMPLE DATA - SHOP / WAREHOUSE
-// ============================================================
 
 sales:([]
     time:  09:05 09:30 10:15 10:45 11:20 12:00 13:10 14:30 15:00 16:45 17:10 18:00 19:30 20:00 20:45;
@@ -19,9 +17,7 @@ inventory:([]
  )
 
 
-// ============================================================
 // LEVEL 1 - BASIC SUMMARY
-// ============================================================
 
 show "===== Total Sales Count Per Store ====="
 show `store xkey select count i by store from sales
@@ -33,9 +29,7 @@ show "===== Product With Highest Total Quantity Sold ====="
 show first `totalQty xdesc select totalQty:sum quantity by product from sales
 
 
-// ============================================================
 // LEVEL 2 - WORKING WITH TIME
-// ============================================================
 
 show "===== Sales Count Per Store Per Hour ====="
 show `store`hour xkey select count i by store, hour:`hh$time from sales
@@ -52,9 +46,7 @@ show "===== Hour With Highest Total Quantity Sold ====="
 show first `totalQty xdesc select totalQty:sum quantity by hour:`hh$time from sales
 
 
-// ============================================================
 // LEVEL 3 - COMBINING DATA BY TIME
-// ============================================================
 
 show "===== Sales With Most Recent Inventory (As-of Join) ====="
 joined: aj[`store`product`time; sales; inventory]
